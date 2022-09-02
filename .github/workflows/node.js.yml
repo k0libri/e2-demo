@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Run API tests and publish them
 
 on: [workflow_dispatch]
 
@@ -14,14 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      with: 
-        repository: ${{ github.repository }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: subdir/package-lock.json
     - run: yarn install
     - run: yarn test
     - name: "Publish test results"
