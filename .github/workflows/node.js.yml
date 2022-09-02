@@ -25,6 +25,7 @@ jobs:
     - run: yarn install
     - run: yarn run test
     - name: "Publish test results"
+      if: always()
       uses: peaceiris/actions-gh-pages@v3.7.3
       with: 
         github_token: ${{ secrets.GITHUB_TOKEN }}
